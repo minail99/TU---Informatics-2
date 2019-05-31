@@ -1,0 +1,30 @@
+<?php
+//page 106 - exercise 2
+function hasArrayTwoCandidates($arr, $arr_size, $sum)
+{
+    /* Sort the elements */
+    sort($arr);
+ 
+    $x = 0;
+    $y = $arr_size - 1;
+    while ($x < $y)
+    {
+        if($arr[$x] + $arr[$y] == $sum) {
+            return 1;
+        }
+        else if($arr[$x] + $arr[$y] < $sum) {
+            $x++;
+        }
+        else {
+            $y--;
+        }
+    }
+    return 0;
+}
+$arr = array (1, 4, 45, 6, 10, -8);
+$n = intval(readline());
+$arr_size = sizeof($arr);
+if(hasArrayTwoCandidates($arr, $arr_size, $n))
+    echo "Array has two elements equal to n";
+else
+    echo "Array elements aren`t equal to the number";
