@@ -1,0 +1,15 @@
+<?php
+//page 106 - exercise 5
+//Read from a single line
+$colors = explode(" ", readline());
+for ($i = 0; $i < count($colors); $i++){
+    if ($colors[$i] == "red"){
+        array_splice($colors, $i, 1);
+        array_unshift($colors, "red");
+    }
+    elseif ($colors[$i] == "white"){
+        array_splice($colors, $i, 1);
+        array_push($colors, "white");
+    }
+}
+echo implode(" ", $colors);
