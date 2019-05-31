@@ -1,0 +1,30 @@
+<?php
+//page 28 - exercise 12
+$str = readline();
+   if (isPalindrome($str)) {
+       echo("Yes");
+   }else {
+       echo("No");
+   }
+function isPalandromeRecursion($str, $first,$last){
+    // If there is only one character
+    if ($first == $last)
+        return true;
+    // If first and last
+    // characters do not match
+    if ($str[$first] != $str[$last])
+        return false;
+    // If there are more than two
+    // characters, check if middle
+    // substring is also palindrome or not.
+    if ($first < $last + 1)
+        return isPalandromeRecursion($str, $first + 1, $last - 1);
+    return true;
+}
+function isPalindrome($str){
+    $n = strlen($str);
+    if ($n == 0)
+        return true;
+    return isPalandromeRecursion($str, 0, $n - 1);
+}
+?>
