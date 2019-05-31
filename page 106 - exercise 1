@@ -1,0 +1,37 @@
+<?php
+//page 61 - exercise 1
+function is_balanced($s)
+{
+    static $open = 0;
+    // Make sure start & end chars are not incorrect
+    if ((substr($s, 0, 1) == ')') || (substr($s, -1, 1) == '(')) {
+        return false;
+    }
+    // Loop through each char
+    for ($i = 0; $i < count($s); $i++) {
+        if (substr($s, $i, 1) == ')') {
+            // Increase the open count
+            $open++;
+        } else {
+            // If open goes below zero, there's an invalid closing paren
+            if ($open < 0) {
+                return false;
+            }
+            // Decrease the open count
+            $open--;
+        }
+    }
+    return true;
+}
+$tests = array(
+    '(())' => '', /* should pass */
+    '(()' => '', /*should fail*/
+    ')()()' => '', /* should fail - leading close */
+    '()()(' => '', /* should fail - trailing open */
+    '()()())()()' => '' /* should fail - errant ")" in middle */
+);
+foreach ($tests as $k => $v) {
+    $tests[$k] = (is_balanced($k) ? 'PASS' : 'FAIL' );
+}
+var_dump($tests);
+?>
